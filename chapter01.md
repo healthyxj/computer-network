@@ -1,23 +1,39 @@
-一、概述
-1、专有名词
-局域网	local area network	LAN
-广域网	wide area network	WAN
-协议分层	protocol layering
-封装/解封装	encapsulation/decapsulation
-多路复用/多路分解	multiplexing/demultiplexing
-主机	host
-端系统	end system
-电路交换网络	circuit-switched network
-分组	packet
-对等点	peering point
-互联网服务提供商	internet service provider	ISP
-主干	backbone
-客户网络	customer network
-模块化	modularity
+# 一、概述
+## 1、专有名词(按拼音首字母排序)
 传输控制协议/互联网协议	TCP/IP
-端对端	end-to-end
+
 点对点	hop-to-hop
-2、internet概览
+
+电路交换网络	circuit-switched network
+
+端对端	end-to-end
+
+端系统	end system
+
+对等点	peering point
+
+多路复用/多路分解	multiplexing/demultiplexing
+
+分组	packet
+
+封装/解封装	encapsulation/decapsulation
+
+广域网	wide area network	WAN
+
+互联网服务提供商	internet service provider	ISP
+
+局域网	local area network	LAN
+
+客户网络	customer network
+
+模块化	modularity
+
+协议分层	protocol layering
+
+主干	backbone
+
+主机	host
+## 2、internet概览
 网络
 由有通信能力的设备连接而成的。
 局域网
