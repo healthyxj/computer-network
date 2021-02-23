@@ -48,7 +48,9 @@ http地址格式：http://IP地址:端口号/context path，context path也是�
 
 为更好地促进互联网络的研究和发展，国际标准化组织ISO在1985年制定了网络互联模型，OSI参考模型：物理层、数据链路层、网络层、运输层、会话层、表示层、应用层。由于过于理论，目前都是4层的TCP/IP协议，网络接口层(network access)、网际层(internet)、运输层(transport)、应用层(application)。用于学习研究的是五层的模型：物理层(physical)、数据链路层(datalink)、网络层、运输层、应用层。
 
+只要将项目部署在tomcat上，客户端就可以通过端口(默认是8080)访问服务器。
 
+步骤：在IDEA上新建一个项目，右键选择add framework support，选择第一个web application，默认建立就会出现一个web模块。右键web模块，选择新建一个HTML文件。为了能够访问tomcat，直接将tomcat集成到IDEA中。点击右上角锤子旁边的add configurations。找到tomcat server，选择local。然后在application server右边的configuration选择tomcat目录，就能看到http port为8080.然后点击deployment(部署)，点击右边的加号，选择add，就能把当前的项目部署到tomcat里了。在同一界面下可以看到application context为/Network_war_exploded，表明当前web模块的名称为这个，意味着只需要在浏览器地址栏里输入http://127.0.0.1:8080/Network_war_exploded/test.html就能访问该项目该模块里的test网页了。在services中可以看到部署花了206milliseconds，并且deployment successfully。
 
 ## 二、参考模型(重点)
 
