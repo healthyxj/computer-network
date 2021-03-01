@@ -28,7 +28,7 @@ http地址格式：<b>`http://IP地址:端口号/context` path</b>，context pat
 
 在add configurations里可以进行设置服务器软件(这里是tomcat)，然后要进行部署(deploy)，部署的过程中要添加artifact，最好<b>改变application context方便记忆</b>。
 
-如果<b>只是`http://localhost:8080/day01_war_exploded，访问的是默认的</b>index.jsp` or index.html
+如果<b>只是`http://localhost:8080/day01_war_exploded，访问的是默认的</b>index.jsp or index.html
 
 如果改了文件的内容，需要选择左边的刷新符号(<b>update tomcat configuration)or按下ctrl+f10，选择redeploy</b>
 
