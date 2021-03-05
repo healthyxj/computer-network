@@ -1,6 +1,6 @@
 # 一、数据包的格式
 
-![网络层的格式]()
+![网络层的格式](https://github.com/healthyxj/computer-network/blob/main/img/%E7%BD%91%E7%BB%9C%E5%B1%82%E7%9A%84%E6%A0%BC%E5%BC%8F.jpg)
 
 数据包由首部、数据两部分组成。数据包的首部由**固定部分(20字节)和可变部分**组成。数据部分很多时候是由传输层传递下来的数据段(Segment)。这里主要介绍首部的各个部分
 
