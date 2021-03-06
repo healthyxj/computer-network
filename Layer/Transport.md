@@ -14,7 +14,7 @@
 
 TCP三次握手，发送请求，发送响应，发送确认。一旦形成了连接可以看成是形成了一个管道。
 
-![TCP与UDP格式](F:\壁纸及图\temp images\TCP与UDP格式.jpg)
+![TCP与UDP格式](https://github.com/healthyxj/computer-network/blob/main/img/TCP%E4%B8%8EUDP%E6%A0%BC%E5%BC%8F.jpg)
 
 ## 1、UDP
 
@@ -54,7 +54,7 @@ telnet 主机 端口：查看是否可以访问主机的某个端口
 
 ## 2、TCP
 
-![TCP伪首部](F:\壁纸及图\temp images\TCP伪首部.jpg)
+![TCP伪首部](https://github.com/healthyxj/computer-network/blob/main/img/TCP%E4%BC%AA%E9%A6%96%E9%83%A8.jpg)
 
 
 
@@ -135,7 +135,7 @@ TCP\UDP的数据长度，完全可以由IP数据包的首部推测出来
 
 
 
-![TCP01](E:\cs from basic to professional\四大基础\网络协议\资料\图片\TCP01_序号_确认号.png)
+![TCP01](https://github.com/healthyxj/computer-network/blob/main/img/TCP01_%E5%BA%8F%E5%8F%B7_%E7%A1%AE%E8%AE%A4%E5%8F%B7.png)
 
 ### 选择性确认(SACK)
 
@@ -178,7 +178,7 @@ Right Edge：占4字节，右边界
 
 当发送方收到0窗口通知时，这时发送方停止发送报文。并且同时**开启一个定时器**，隔一段时间就发个测试报文去询问接收方最新的窗口大小。如果接收的窗口大小还是为0，则发送方再次刷新启动定时器
 
-![](E:\cs from basic to professional\四大基础\网络协议\资料\图片\TCP02_流量控制.png)
+![](https://github.com/healthyxj/computer-network/blob/main/img/TCP02_%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6.png)
 
 ## 拥塞控制
 
@@ -200,7 +200,7 @@ swnd = min(cwnd, rwnd)
 
 ### 慢开始(slow start)
 
-![](F:\壁纸及图\temp images\TCP拥塞避免.jpg)
+![](https://github.com/healthyxj/computer-network/blob/main/img/TCP%E6%8B%A5%E5%A1%9E%E9%81%BF%E5%85%8D.jpg)
 
 cwnd的初始值比较小，然后随着**数据包被接收方确认（收到一个ACK）**,cwnd就成倍增长（**指数级**)
 
@@ -228,7 +228,7 @@ cwnd的初始值比较小，然后随着**数据包被接收方确认（收到�
 
 ### 快速恢复（fast recovery）
 
-![](F:\壁纸及图\temp images\TCP拥塞避免快恢复.jpg)
+![](https://github.com/healthyxj/computer-network/blob/main/img/TCP%E6%8B%A5%E5%A1%9E%E9%81%BF%E5%85%8D%E5%BF%AB%E6%81%A2%E5%A4%8D.jpg)
 
 与慢开始不同之处是现在不执行慢开始算法，即cwnd现在不恢复到初始值,而是**把cwnd值设置为新的ssthresh值（减小后的值）**,然后开始执行拥塞避免算法（“加法增大”），使拥塞窗口缓慢地线性增大
 
@@ -240,15 +240,15 @@ cwnd的初始值比较小，然后随着**数据包被接收方确认（收到�
 
 ## 序号、确认号
 
-![](F:\壁纸及图\temp images\TCP序号与确认号1.jpg)
+![](https://github.com/healthyxj/computer-network/blob/main/img/TCP%E5%BA%8F%E5%8F%B7%E4%B8%8E%E7%A1%AE%E8%AE%A4%E5%8F%B71.jpg)
 
 建立连接时，TCP数据部分是没有内容的。
 
-![](F:\壁纸及图\temp images\TCP中的原生raw seq.jpg)
+![](https://github.com/healthyxj/computer-network/blob/main/img/TCP%E4%B8%AD%E7%9A%84%E5%8E%9F%E7%94%9Fraw%20seq.jpg)
 
 ## 建立连接
 
-![](F:\壁纸及图\temp images\TCP三次握手.jpg)
+![](https://github.com/healthyxj/computer-network/blob/main/img/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B.jpg)
 
 CLOSED：client处于关闭状态 
 
@@ -292,7 +292,7 @@ CLOSED：client处于关闭状态
 
 ## 释放连接-4次挥手
 
-![](E:\cs from basic to professional\四大基础\网络协议\资料\图片\TCP08_释放连接.png)
+![](https://github.com/healthyxj/computer-network/blob/main/img/TCP08_%E9%87%8A%E6%94%BE%E8%BF%9E%E6%8E%A5.png)
 
 * FIN-WAIT-1：表示想**主动关闭连接**
 
