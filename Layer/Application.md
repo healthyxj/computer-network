@@ -313,7 +313,7 @@ Accept-language:fr
 
 ### 响应报文
 
-![](F:\壁纸及图\temp images\HTTP响应报文.jpg)
+![](img\HTTP响应报文.jpg)
 
 HTTP响应报文是服务器发过来的，因此没有方法名称。首部行也成为响应头，实体**主体部分是返回的HTML**，也被称为响应体。
 
