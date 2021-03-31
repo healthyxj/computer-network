@@ -557,7 +557,7 @@ TCP数据连接端口：20
 
 ## SMTP的过程
 
-![]()
+![](img\SMTP.jpg)
 
 用户通过user agent传递信息，user agent（UA）发送message到自己的mail server，信息被放入等待队列中。mail server建立与另一台mail server的**TCP连接**。message就会通过TCP协议发送到另一台mail server上。另一台mail server就会将message放入到mailbox中，等待另一个用户打开mailbox读取message。
 
