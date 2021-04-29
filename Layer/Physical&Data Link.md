@@ -1,4 +1,4 @@
-![数据包的传输过程](https://github.com/healthyxj/computer-network/blob/main/img/%E6%95%B0%E6%8D%AE%E5%8C%85%E7%9A%84%E4%BC%A0%E8%BE%93%E8%BF%87%E7%A8%8B.jpg)
+![数据包的传输过程](img\数据包的传输过程.jpg)
 
 路由器连接不同网段时，第一次超时的原因是，源主机发送第一个包时，路由器处理不过来，就丢包，但是能够往目的主机发送一个ARP广播，这样子就能够获得目的主机的MAC地址。
 
@@ -54,7 +54,7 @@
 
 ## 2、数据通信模型
 
-![数据通信模型](https://github.com/healthyxj/computer-network/blob/main/img/%E6%95%B0%E6%8D%AE%E9%80%9A%E4%BF%A1%E6%A8%A1%E5%9E%8B.jpg)
+![数据通信模型](img\数据通信模型.jpg)
 
 数据通信过程：输入信息，经过源点，信息经过处理变为数据，数据进入发送器，变为发送的信号。信号经过传输系统，到达接收系统，输出数据到达终点，最终转化为输出信息。
 
@@ -129,7 +129,7 @@ CSMA/CD(Carrier Sense Multiple Access with Collision Detectio)，载波侦听多
 
 ## 2、Ethernet V2帧的格式
 
-![Ethernet V2帧的格式](https://github.com/healthyxj/computer-network/blob/main/img/Ethernet%20V2%E5%B8%A7%E7%9A%84%E6%A0%BC%E5%BC%8F.jpg)
+![Ethernet V2帧的格式](img\Ethernet V2帧的格式.jpg)
 
 Ethernet V2帧<b>没有帧结束定界符，仍有FCS</b>,有插入8个字节(包括7字节的前同步码和1字节的帧开始定界符)。
 
