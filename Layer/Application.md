@@ -54,7 +54,12 @@ DNS提供的重要服务
 * 负载分配(load distribution)
   * 繁忙的站点被冗余分布在多台服务器上，因此有着不同的IP地址。DNS服务器存储着这些IP地址集合
 
+为什么不使用集中化的DNS
 
+* 一旦出现错误，后果严重
+* 流量的问题
+* 
+* 便于维护和管理
 
 ~~~
 域名申请注册https://wanwang.aliyun.com/
@@ -226,6 +231,7 @@ DHCP服务器会从IP地址池中，挑选一个IP地址“**出租**“给客�
   * ipconfig /all：可以看到DHCP相关的详细信息，比如租约过期时间、DHCP服务器地址等 
   * ipconfig /release：释放租约
   * ipconfig /renew：重新申请IP地址、申请续约（延长租期）
+* DHCP能够返回客户的路由器的第一跳的地址；DNS服务器的名字和IP地址；子网掩码
 
 # 三、HTTP(超文本传输协议)
 
@@ -516,15 +522,13 @@ session
 3)web缓存器接收到对象，就存储一份副本。并利用已有的TCP连接将HTTP响应报文的副本发送回。
 ~~~
 
-
-
 使用web cache有许多的的优点
 
 * 减少响应时间
 * 减少机构访问链接上的流量
 * 使“贫困”的内容提供商可以有效地交付内容（但P2P文件共享也是如此）
 
-版本的新旧问题，使用**条件GET方法**(请求报文使用GET方法，并且请求报文中包括一个"If-Modified-Since")。
+版本的新旧问题，使用**条件GET方法(conditional GET)**(请求报文使用GET方法，并且请求报文中包括一个"If-Modified-Since")。
 
 对于缓存服务器，如果有最新的缓存版本，就不会发送目标请求。
 
@@ -571,9 +575,7 @@ CDN能够对集群和客户之间的时延和丢包性执行周期性的实时�
 
 # 六、FTP(file transfer protocol)
 
-TCP控制连接端口：21
-
-TCP数据连接端口：20
+TCP控制连接端口: 21,TCP数据连接端口: 20
 
 客户端通过控制连接授权。客户通过控制连接发送请求浏览遥远的目录。当**服务器接收到文件传输请求，服务器会打开第二个端口为20的TCP连接**。但是在传输完文件后，服务器会关闭数据连接。
 
@@ -581,7 +583,7 @@ TCP数据连接端口：20
 
 # 七、邮件
 
-电子邮件是一种异步通信媒介。因特网电子邮件系统的**主要组成部分**：用户代理(user agent)、邮件服务器(mail server)、简单邮件传输协议(SMTP).
+电子邮件是一种异步通信媒介。因特网电子邮件系统的**主要组成部分**：用户代理(user agent)、邮件服务器(mail server)、**简单邮件传输协议(SMTP)**.
 
 邮件服务器主要包括mailbox、message queue、SMTP protocol。SMTP的端口号为25.
 
@@ -727,6 +729,8 @@ S: +OK POP3 server signing off
 
 使用**最稀缺优先(rarest first)**的技术。请求邻居中拥有的副本数量最少的块。最终得以均衡每个块在洪流中的副本的数量。
 
+
+
 # 九、Socket Proramming
 
 学习如何搭建使用套接字的客户端/服务器应用程序。套接字就相当于在传输层和应用层之间的门。
@@ -749,342 +753,5 @@ UDP是不可靠的传输协议，UDP没有建立连接。也没有握手。发�
 
 
 
-CDN边缘结点一般是李离用户比较近的
+CDN边缘结点一般是离用户比较近的
 
-月以RFC 7540正式发表，取代HTTP/1.1成为HTTP的实现标准
-
-## 3、报文格式
-
-不严谨，提供大致认识
-
-HTTP信息只有两种：request和response
-
-### 请求报文
-
-![](F:\壁纸及图\temp images\HTTP请求报文.jpg)
-
-请求行有三个字段：方法、URI、版本
-
-* 方法中有GET和POST请求，GET请求无请求体(**如要输入username&password只能附加在URI后**)，而**POST有请求体，故POST更常用**。
-
-* URI是请求的地址名。
-
-URI后跟的是HTTP的版本号。**版本号是两个字节的回车换行CRLF**
-
-然后就是请求头，字段(field)
-
-* host 主机名
-* User-agent 服务器的代理
-* Connection 连接
-* Accept-language 接受的语言
-
-具体如下所示
-
-~~~HTTP
-GET /somedir/page.html HTTP/1.1
-Host: www.someschool.edu 
-User-agent: Mozilla/4.0
-Connection: close	//表示不需要建立持续连接 
-Accept-language:fr
-~~~
-
-当请求方法为post时，实体段中的内容就是用户在表单中输入的内容。
-
-**CRLF分别是CR(回车)、LF(换行)**
-
-然后是首部字段名，例如HOST: 192.168.1.10
-
-注意**最后还有一个CRLF**
-
-### 响应报文
-
-![](img\HTTP响应报文.jpg)
-
-HTTP响应报文是服务器发过来的，因此没有方法名称。首部行也成为响应头，实体**主体部分是返回的HTML**，也被称为响应体。
-
-状态码：如果是正常的状态则为200，短语一般为OK。
-
-以下为响应报文的示例
-
-~~~http
-HTTP/1.1 200 OK 
-Connection: close	//表示发送完报文后将会关闭TCP连接
-Date: Thu, 06 Aug 1998 12:00:15 GMT	//首部行指示服务器产生并发送响应报文的时间，也就是服务器检索到对象，将对象放入响应报文并发送的时刻 
-Server: Apache/1.3.0 (Unix) 
-Last-Modified: Mon, 22 Jun 1998 …... //对象创建or最后修改的时间
-Content-Length: 6821 
-Content-Type: text/html
-~~~
-
-ABNF（Augmented BNF），是BNF（Backus-Naur Form，译为：巴科斯-瑙尔范式）的修改、增强版。ABNF是最严谨的HTTP报文格式描述形式，脱离ABNF谈论HTTP报文格式，往往都是片面、不严谨的
-
-### ABNF的核心规则
-
-| 规则   | 形式              | 意义                          |
-| ------ | ----------------- | ----------------------------- |
-| ALPHA  | %x41-5A / %x61-7A | 大写和小写ASCII字母           |
-| DIGIT  | %x30-39           | 数字0-9                       |
-| HEXDIG |                   | 十六进制数字                  |
-| SP     | %x20              | 空格                          |
-| HTAB   | %x09              | 横向制表符                    |
-| WSP    | SP/HTAB           | 空格或横向制表符              |
-| CHAR   | %x01-7F           | 任何7-位ASCII字符，不包括NULL |
-| OCTET  | %x00-FF           | 8位数据                       |
-| CR     | %x0D              | 回车                          |
-| LF     | %x0A              | 换行                          |
-| CRLF   | CRLF              | 互联网标准换行(%x0D%x0A)      |
-
-## 4、ABNF下的报文格式-整体
-
-HTTP-message = **start-line *( header-field CRLF )  CRLF [ message-body ]**
-
-start-line = request-line / status-line	开始行是请求行或者状态行
-
-| /    | 任选一个                   |
-| ---- | -------------------------- |
-| *    | 0个或多个；2*表示至少2个， |
-| ()   | 组成一个整体               |
-| []   | 可选，可有可无             |
-
-### 开始行 request-line / status-line
-
-request-line = **method SP request-target SP HTTP-version CRLF** 
-
-HTTP-version = HTTP-name "/" DIGIT "." DIGIT ;'""表示固定，所以才会看到HTTP/1.1
-
-HTTP-name = %x48.54.54.50 ; HTTP 
-
-
-
-status-line = HTTP-version SP status-code SP reason-phrase CRLF 
-
-status-code = 3DIGIT 
-
-reason-phrase = *( HTAB / SP / VCHAR / obs-text )
-
-HTTP/1.1 200
-
-### 请求头 header-filled与请求体message-body
-
-header-field = field-name ":" OWS field-value OWS
-
-field-name = token
-
-field-value = * (field-content / obs-fold)
-
-**OWS = %(SP / HTAB)**
-
-
-
-message-body = *OCTET
-
-## 5、URL编码
-
-URL中一旦出现了一些特殊字符（比如中文、空格），需要进行编码。在**浏览器地址栏输入URL时，是采用UTF-8进行编码**
-
-如编码前：https://www.baidu.com/s?wd=百度 ，编码后：https://www.baidu.com/s?wd=%E5%8D%8E%E4%B8%BA
-
-
-
-## 6、请求方法
-
-GET、HEAD、POST、PUT、DELETE、CONNECT、OPTIONS、TRACE 
-
-RFC 5789, section 2: Patch method：描述了PATCH方法 
-
-GET：常用于**读取**的操作，请求参数直接拼接在URL的后面（浏览器对URL是有长度限制的） 
-
-POST：常用于**添加、修改、删除**的操作，请求参数可以放到请求体中（没有大小限制） 
-
-**HEAD：请求得到与GET请求相同的响应，但没有响应体**。使用场景举例：在下载一个大文件前，先获取其大小，再决定是否要下载。以此可以节约带宽资源
-
-## 7、状态码
-
-### 正常
-
-200 OK
-
-表示请求成功，请求的目标随后会通过message发送过来
-
-
-
-### 客户端
-
-301 Moved Permanently
-
-请求的目标被移动了， 随后新的地址会发送过来。**新的URI会在响应报文的Location中**。
-
-304 Not Modified
-
-### 服务器
-
-400 Bad Request
-
-通用差错代码，表示服务器不能理解请求信息
-
-404 Not Found
-
-在服务器上找不到请求的文件
-
-
-
-505 HTTP Version Not Supported
-
-HTTP版本不被支持
-
-
-
-
-
-#  四、cookie
-
-在客户端存储一些数据，**服务器可以返回cookie交给客户端去存储**，一般是浏览器的本地硬盘，只能存储在某个浏览器，**不同的浏览器之间不互通**，浏览器关闭cookie就会消失.
-
-cookie能够保持状态。
-
-**cookie的作用过程**：当用户在浏览器上第一次登录某个网站，就会发送一个请求。当服务器接收到请求，就会发送一个**包含Set-cookie**的响应，使得主机上的浏览器被标记某个特殊的ID。下次用户通过该浏览器访问同一个网站时，就会把Set-cookie上的ID发送个服务器，服务器就能够找到数据库中对应的表格，同意用户的连接。
-
-## cookie携带的信息
-
-* authorization 授权
-* shopping carts  购物车
-* recommendations 推荐
-* user session state 用户会话状态
-
-session
-
-在服务器存储一些数据，一般存储在内存中。session在服务器的默认生存时间为30min
-
-会话跟踪技术
-
-
-
-# 五、web caches(Proxy server)
-
-代理服务器能够不麻烦源服务器。
-
-用户能够设置浏览器通过缓存接入web。浏览器首先发送所有的HTTP请求到缓存。在缓存中的对象就会被缓存返回。**如果缓存中没有该对象，就会通过代理服务器向源服务器发送请求来获取对象**。
-
-~~~
-1)浏览器创建到Web缓存器的TCP连接，并向web缓存器中的对象发送一个HTTP请求。
-2)Web缓存查看是否存储了该对象的副本，如果有，就用HTTP响应报文返回该对象；若没有就打开与该对象的初始服务器的TCP连接，重复HTTP请求和响应。
-3)web缓存器接收到对象，就存储一份副本。并利用已有的TCP连接将HTTP响应报文的副本发送回。
-~~~
-
-
-
-使用web cache有许多的的优点
-
-* 减少响应时间
-* 减少机构访问链接上的流量
-* 使“贫困”的内容提供商可以有效地交付内容（但P2P文件共享也是如此）
-
-版本的新旧问题，使用**条件GET方法**(请求报文使用GET方法，并且请求报文中包括一个"If-Modified-Since")。
-
-对于缓存服务器，如果有最新的缓存版本，就不会发送目标请求。
-
-HTTP中缓存的格式：If-modified-since: <date>
-
-服务器的响应中也会包含相关的内容，来表征缓存的版本是否是最新的：HTTP/1.0 304 Not  Modified
-
-## CDN(Contents Distribution Nextworks)
-
-将内容分发到不同的网络中，需要用CDN形成服务器深入形成各种网络。
-
-CDN采用两种不同的服务器安置原则
-
-* 深入
-  * 是通过在遍及全球的接入ISP中部署服务器集群来深入到ISP的接入网中
-* 邀请做客
-  * 通过在少量（例如 10 个）关键位置建造大集群来邀请到 ISP 做客；通常将集群建在IXP
-
-### CDN操作
-
-当用户主机用浏览器检索某个特定的视频时，CDN必须截获该请求，来实现
-
-* 确定此时适合用于该客户的CDN服务器集群
-* 将用户的请求重定向到该集群的某台CDN服务器
-
-~~~
-1)用户访问位于Netcinema的web网页
-2)用户点击链接时，该用户主机就会发送一个对该URL的DNS请求
-3)该用户的本地DNS服务器将DNS请求中继到一台用户Netcinema的权威DNS服务器，观察到请求的类型；返回一个CDN服务器的主机名
-4)DNS进入了kingDNS的专用DNS基础设施；用户的LDNS发送第二个请求，最终指向返回CDN内容服务器的IP地址。在该内容服务器的DNS系统中，指定了DNS服务器，客户能够将这台服务器接收到内容
-5)LDNS向用户主机转发内容服务CDN节点的IP地址
-6)一旦客户接收到kingDNS的IP地址，就与该IP地址创建直接的连接，并发出HTTP GET请求
-~~~
-
-CDN能够存储CDN结点上的内容的拷贝。因此，用户向CDN 请求文件时，CDN 就能够利用最近的网络向用户发送数据。
-
-### 集群选择策略
-
-任何CDN的部署，核心是**集群选择策略(cluster selection strategy)**。动态的将客户定向到CDN中的某个服务器集群或数据中心的机制。
-
-一般的策略是指派客户到地理上最为临近的集群。使用商用地理位置数据库，每个LDNSIP地址映射到一个地理位置。
-
-CDN能够对集群和客户之间的时延和丢包性执行周期性的实时测量。
-
-# 六、FTP(file transfer protocol)
-
-TCP控制连接端口：21
-
-TCP数据连接端口：20
-
-客户端通过控制连接授权。客户通过控制连接发送请求浏览遥远的目录。当**服务器接收到文件传输请求，服务器会打开第二个端口为20的TCP连接**。但是在传输完文件后，服务器会关闭数据连接。
-
-
-
-# 七、邮件
-
-电子邮件是一种异步通信媒介。因特网电子邮件系统的主要组成部分：用户代理(user agent)、邮件服务器(mail server)、简单邮件传输协议(SMTP).
-
-邮件服务器主要包括mailbox、message queue、SMTP protocol。SMTP的端口号为25.
-
-## SMTP的过程
-
-![](img\SMTP.jpg)
-
-用户通过user agent传递信息，user agent（UA）发送message到自己的mail server，信息被放入等待队列中。mail server建立与另一台mail server的**TCP连接**。message就会通过TCP协议发送到另一台mail server上。另一台mail server就会将message放入到mailbox中，等待另一个用户打开mailbox读取message。
-
-**SMTP不使用中间邮件服务器发送邮件**。
-
-SMTP示例(其中s代表server，c代表client)
-
-~~~
-S: 220 hamburger.edu 	//服务器主机
-C: HELO crepes.fr 	//客户主机
-S: 250 Hello crepes.fr, pleased to meet you 
-C: MAIL FROM: <alice@crepes.fr> 
-S: 250 alice@crepes.fr... Sender ok 
-C: RCPT TO: <bob@hamburger.edu> 
-S: 250 bob@hamburger.edu ... Recipient ok 
-C: DATA
-S: 354 Enter mail, end with "." on a line by itself 
-C: Do you like ketchup? 
-C: How about pickles? 
-C: . 
-S: 250 Message accepted for delivery 
-C: QUIT
-S: 221 hamburger.edu closing connection
-~~~
-
-## SMTP与HTTP比较
-
-SMTP的过程相当于推，而HTTP的过程相当于**拉**。
-
-SMTP需要有7-bit的ASCII，而且用的是**持久的连接**。**CRLF.CRLF表示结束**
-
-## 邮件形式
-
-信封
-
-* Mail FROM:
-* RCPT TO:
-
-内容
-
-* To:
-* From:
-* Subject:
-
-message
